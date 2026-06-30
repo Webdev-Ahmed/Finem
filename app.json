@@ -1,40 +1,49 @@
 {
   "expo": {
-    "name": "finance-tracker",
-    "slug": "finance-tracker",
+    "name": "Finem",
+    "slug": "finem",
+    "scheme": "finem",
     "version": "1.0.0",
-
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-
+    "userInterfaceStyle": "automatic",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "experiments": {
-      "tsconfigPaths": true
+      "tsconfigPaths": true,
+      "typedRoutes": true
     },
-
     "plugins": [
+      "expo-router",
+      "expo-font",
       [
         "expo-splash-screen",
         {
           "image": "./assets/splash.png",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#FF6040",
+          "dark": {
+            "backgroundColor": "#E84520"
+          }
         }
       ]
     ],
-
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-
-    "userInterfaceStyle": "light",
-
-    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#E84520"
+      },
+      "icon": "./assets/icon.png",
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.soebr3114.finem"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8d6d69e3-c255-4487-9d03-2d4a54ada45e"
       }
     }
   }
