@@ -3,7 +3,7 @@
     "name": "Finem",
     "slug": "finem",
     "scheme": "finem",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "userInterfaceStyle": "automatic",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -35,7 +35,7 @@
         "backgroundColor": "#E84520"
       },
       "icon": "./assets/icon.png",
-      "softwareKeyboardLayoutMode": "pan",
+      "softwareKeyboardLayoutMode": "resize",
       "package": "com.soebr3114.finem"
     },
     "extra": {

@@ -7,6 +7,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { initDB } from '@/db';
 import { rolloverDelegations } from '@/db/queries/delegations';
 import { AppProvider } from '@/context/AppContext';
+import { Colors } from '@/constants/colors';
 import '../global.css';
 
 SplashScreen.preventAutoHideAsync();
@@ -38,6 +39,8 @@ export default function RootLayout() {
 
   if ((!fontsLoaded && !fontError) || !dbReady) return null;
 
+  const themeColors = colorScheme === 'dark' ? Colors.dark : Colors.light;
+
   const sheetOptions = {
     presentation: 'transparentModal' as const,
     animation: 'none' as const,
@@ -62,9 +65,14 @@ export default function RootLayout() {
           <Stack.Screen name="delegation-detail" options={sheetOptions} />
           <Stack.Screen name="edit-profile" options={sheetOptions} />
 
-          {/* Full pages (slide from right) */}
-          <Stack.Screen name="categories" />
-          <Stack.Screen name="delegations" />
+          <Stack.Screen
+            name="categories"
+            options={{ contentStyle: { backgroundColor: themeColors.background } }}
+          />
+          <Stack.Screen
+            name="delegations"
+            options={{ contentStyle: { backgroundColor: themeColors.background } }}
+          />
         </Stack>
         <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       </AppProvider>

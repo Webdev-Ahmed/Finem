@@ -56,7 +56,24 @@ export default function AddSavingsGoalModal() {
   }
 
   return (
-    <ModalSheet snapPoint="85%">
+    <ModalSheet
+      snapPoint="85%"
+      footer={
+        <TouchableOpacity
+          onPress={handleSave}
+          disabled={!canSave}
+          activeOpacity={0.85}
+          style={{
+            backgroundColor: canSave ? c.primary : c.border,
+            borderRadius: 16,
+            padding: 18,
+            alignItems: 'center',
+          }}>
+          <Text style={{ fontFamily: 'Inter-Bold', fontSize: 16, color: '#fff' }}>
+            {saving ? 'Saving...' : 'Create Goal'}
+          </Text>
+        </TouchableOpacity>
+      }>
       {/* Header */}
       <View
         style={{
@@ -76,7 +93,7 @@ export default function AddSavingsGoalModal() {
 
       <BottomSheetScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 16 }}
+        contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled">
         <Label text="Icon" />
@@ -160,23 +177,6 @@ export default function AddSavingsGoalModal() {
           }}
         />
       </BottomSheetScrollView>
-
-      <View style={{ paddingHorizontal: 24, paddingTop: 10, paddingBottom: 24 }}>
-        <TouchableOpacity
-          onPress={handleSave}
-          disabled={!canSave}
-          activeOpacity={0.85}
-          style={{
-            backgroundColor: canSave ? c.primary : c.border,
-            borderRadius: 16,
-            padding: 18,
-            alignItems: 'center',
-          }}>
-          <Text style={{ fontFamily: 'Inter-Bold', fontSize: 16, color: '#fff' }}>
-            {saving ? 'Saving...' : 'Create Goal'}
-          </Text>
-        </TouchableOpacity>
-      </View>
     </ModalSheet>
   );
 }

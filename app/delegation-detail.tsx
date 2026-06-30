@@ -205,7 +205,7 @@ export default function DelegationDetailModal() {
               ))}
             </View>
 
-            <Label text={`Budget (applies to future periods) · ${currencySymbol}`} />
+            <Label text={`Budget (current & future periods) · ${currencySymbol}`} />
             <BottomSheetTextInput
               value={budget}
               onChangeText={setBudget}

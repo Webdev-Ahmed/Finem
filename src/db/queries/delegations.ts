@@ -124,6 +124,10 @@ export async function updateDelegation(
     'UPDATE delegations SET name = ?, icon = ?, color = ?, default_budget = ? WHERE id = ?',
     [name, icon, color, defaultBudget, id]
   );
+  await db.runAsync(
+    'UPDATE delegation_periods SET budgeted_amount = ? WHERE delegation_id = ? AND period_end IS NULL',
+    [defaultBudget, id]
+  );
 }
 
 export async function deleteDelegation(id: number): Promise<void> {

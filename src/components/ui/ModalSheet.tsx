@@ -1,18 +1,22 @@
 import { useCallback, useRef } from 'react';
+import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
   BottomSheetView,
+  BottomSheetFooter,
+  BottomSheetFooterProps,
 } from '@gorhom/bottom-sheet';
 import { useThemeColors } from '@/hooks/useThemeColors';
 
 interface Props {
   children: React.ReactNode;
+  footer?: React.ReactNode;
   snapPoint?: string;
 }
 
-export function ModalSheet({ children, snapPoint = '88%' }: Props) {
+export function ModalSheet({ children, footer, snapPoint = '88%' }: Props) {
   const router = useRouter();
   const c = useThemeColors();
   const sheetRef = useRef<BottomSheet>(null);
@@ -34,6 +38,23 @@ export function ModalSheet({ children, snapPoint = '88%' }: Props) {
     []
   );
 
+  const renderFooter = useCallback(
+    (props: BottomSheetFooterProps) => (
+      <BottomSheetFooter {...props} bottomInset={0}>
+        <View
+          style={{
+            backgroundColor: c.background,
+            paddingHorizontal: 24,
+            paddingTop: 10,
+            paddingBottom: 24,
+          }}>
+          {footer}
+        </View>
+      </BottomSheetFooter>
+    ),
+    [footer, c.background]
+  );
+
   return (
     <BottomSheet
       ref={sheetRef}
@@ -42,6 +63,7 @@ export function ModalSheet({ children, snapPoint = '88%' }: Props) {
       enablePanDownToClose
       onClose={handleClose}
       backdropComponent={renderBackdrop}
+      footerComponent={footer ? renderFooter : undefined}
       backgroundStyle={{ backgroundColor: c.background }}
       handleIndicatorStyle={{ backgroundColor: c.border, width: 40, height: 4 }}
       keyboardBehavior="interactive"
